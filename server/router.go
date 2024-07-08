@@ -1,9 +1,9 @@
 package server
 
 import (
+	"giligili/api"
+	"giligili/middleware"
 	"os"
-	"singo/api"
-	"singo/middleware"
 
 	"github.com/gin-gonic/gin"
 )
@@ -36,6 +36,22 @@ func NewRouter() *gin.Engine {
 			auth.GET("user/me", api.UserMe)
 			auth.DELETE("user/logout", api.UserLogout)
 		}
+
+		// video 相关
+		video := v1.Group("")
+		{
+			// 视频投稿
+			video.POST("video", api.CreateVideo)
+			// 查看视频详情
+			// v1.Get("video/:id", api.ShowVideoDetail)
+			// 获取视频列表
+			// v1.Get("videos", api.GetVideosList)
+			// 更新视频详情
+			// v1.PUT("video/:id", api.UpdateVideo)
+			// 删除视频
+			// v1.DELETE("video/:id", api.DeleteVideo)
+		}
+
 	}
 	return r
 }

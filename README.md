@@ -1,1 +1,1 @@
-基于singo框架的demo
+基于giligili框架的demo

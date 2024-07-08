@@ -3,9 +3,9 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-	"singo/conf"
-	"singo/model"
-	"singo/serializer"
+	"giligili/conf"
+	"giligili/model"
+	"giligili/serializer"
 
 	"github.com/gin-gonic/gin"
 	validator "gopkg.in/go-playground/validator.v8"
@@ -45,5 +45,5 @@ func ErrorResponse(err error) serializer.Response {
 		return serializer.ParamErr("JSON类型不匹配", err)
 	}
 
-	return serializer.ParamErr("参数错误", err)
+	return serializer.ParamErr("参数错误", err) // 直接参数错误....可以优化 根据binding。。
 }
