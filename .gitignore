@@ -1,4 +1,5 @@
 .vscode/
 .env
+conf/.env
 go.sum
-.*.exe
+*.exe
