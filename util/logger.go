@@ -11,8 +11,8 @@ const (
 	LevelError = iota
 	// LevelWarning 警告
 	LevelWarning
-	// LevelInformational 提示
-	LevelInformational
+	// LevelInfo 提示
+	LevelInfo
 	// LevelDebug 除错
 	LevelDebug
 )
@@ -59,7 +59,7 @@ func (ll *Logger) Warning(format string, v ...interface{}) {
 
 // Info 信息
 func (ll *Logger) Info(format string, v ...interface{}) {
-	if LevelInformational > ll.level {
+	if LevelInfo > ll.level {
 		return
 	}
 	msg := fmt.Sprintf("[I] "+format, v...)
@@ -84,7 +84,7 @@ func BuildLogger(level string) {
 	case "warning":
 		intLevel = LevelWarning
 	case "info":
-		intLevel = LevelInformational
+		intLevel = LevelInfo
 	case "debug":
 		intLevel = LevelDebug
 	}

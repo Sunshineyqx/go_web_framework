@@ -29,6 +29,9 @@ func Database(connString string) {
 
 	db, err := gorm.Open(mysql.Open(connString), &gorm.Config{
 		Logger: newLogger,
+		/* 		NamingStrategy: schema.NamingStrategy{
+			TablePrefix: "mxshop_",
+		}, */
 	})
 	// Error
 	if connString == "" || err != nil {

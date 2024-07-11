@@ -21,7 +21,7 @@ func CreateVideo(c *gin.Context) {
 func ShowVideoDetail(c *gin.Context) {
 	var service service.ShowVideoDetailService
 	if err := c.ShouldBind(&service); err == nil {
-		res := service.ShowVideoDetail(c.Params.ByName("id"))
+		res := service.ShowVideoDetail(c.Param("id"))
 		c.JSON(200, res)
 	} else {
 		c.JSON(200, ErrorResponse(err))
@@ -54,7 +54,7 @@ func UpdateVideo(c *gin.Context) {
 func DeleteVideo(c *gin.Context) {
 	var service service.DeleteVideoService
 	if err := c.ShouldBind(&service); err == nil {
-		res := service.DeleteVideo(c.Params.ByName("id"))
+		res := service.DeleteVideo(c.Param("id"))
 		c.JSON(200, res)
 	} else {
 		c.JSON(200, ErrorResponse(err))
