@@ -33,7 +33,7 @@ func ErrorResponse(err error) serializer.Response {
 	if errs, ok := err.(validator.ValidationErrors); ok {
 		return serializer.Response{
 			Code:  serializer.CodeValidateErr,
-			Error: errs.Translate(util.Translator()),
+			Error: util.RemoveTopStruct(errs.Translate(util.Translator())),
 		}
 	}
 	if _, ok := err.(*json.UnmarshalTypeError); ok {

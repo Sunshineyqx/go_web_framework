@@ -3,6 +3,8 @@ package util
 import (
 	"fmt"
 	"os"
+	"reflect"
+	"strings"
 
 	"github.com/gin-gonic/gin/binding"
 	"github.com/go-playground/locales/en"
@@ -26,11 +28,19 @@ func Translator() ut.Translator {
 func InitTrans(locale string) (err error) {
 	// 修改gin框架中的validator引擎属性，实现定制
 	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
+		// 注册获取tag里json的自定义方法
+		v.RegisterTagNameFunc(func(fld reflect.StructField) string {
+			name := strings.SplitN(fld.Tag.Get("json"), ",", 2)[0]
+			if name == "-" {
+				name = ""
+			}
+			return name
+		})
+
 		zhT := zh.New()
 		enT := en.New()
 		// 第一个参数是备用的语言，后面是应该支持的语言
 		uni := ut.New(enT, zhT, enT)
-
 		if trans == nil {
 			trans = new(ut.Translator)
 		}
@@ -50,4 +60,13 @@ func InitTrans(locale string) (err error) {
 		return
 	}
 	return
+}
+
+// 配合翻译器，去掉返回的"UserLoginService.password"前面的struct
+func RemoveTopStruct(fields map[string]string) map[string]string {
+	rsp := map[string]string{}
+	for field, err := range fields {
+		rsp[field[strings.Index(field, ".")+1:]] = err
+	}
+	return rsp
 }
