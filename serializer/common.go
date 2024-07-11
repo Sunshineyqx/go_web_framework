@@ -7,7 +7,7 @@ type Response struct {
 	Code  int         `json:"code"`
 	Data  interface{} `json:"data"`
 	Msg   string      `json:"msg"`
-	Error string      `json:"error"`
+	Error interface{} `json:"error"`
 }
 
 // TrackedErrorResponse 有追踪信息的错误响应
@@ -29,6 +29,8 @@ const (
 	CodeNoRightErr = 403
 	// CodeNotFound 资源不存在
 	CodeNotFound = 404
+	// validator验证错误
+	CodeValidateErr = 405
 	// CodeDBError 数据库操作失败
 	CodeDBError = 50001
 	// CodeEncryptError 加密失败
