@@ -1,1 +1,1 @@
-基于giligili框架的demo
+基于singo的go-web框架(base分支)
