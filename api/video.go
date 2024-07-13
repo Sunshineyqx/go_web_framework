@@ -13,7 +13,7 @@ func CreateVideo(c *gin.Context) {
 		res := service.CreateVideo()
 		c.JSON(200, res)
 	} else {
-		c.JSON(200, ErrorResponse(err))
+		c.JSON(444, ErrorResponse(err))
 	}
 }
 
@@ -24,7 +24,7 @@ func ShowVideoDetail(c *gin.Context) {
 		res := service.ShowVideoDetail(c.Param("id"))
 		c.JSON(200, res)
 	} else {
-		c.JSON(200, ErrorResponse(err))
+		c.JSON(444, ErrorResponse(err))
 	}
 }
 
@@ -35,7 +35,7 @@ func GetVideosList(c *gin.Context) {
 		res := service.GetVideoList()
 		c.JSON(200, res)
 	} else {
-		c.JSON(200, ErrorResponse(err))
+		c.JSON(444, ErrorResponse(err))
 	}
 }
 
@@ -46,7 +46,7 @@ func UpdateVideo(c *gin.Context) {
 		res := service.UpdateVideo(c.Params.ByName("id"))
 		c.JSON(200, res)
 	} else {
-		c.JSON(200, ErrorResponse(err))
+		c.JSON(444, ErrorResponse(err))
 	}
 }
 
@@ -57,6 +57,6 @@ func DeleteVideo(c *gin.Context) {
 		res := service.DeleteVideo(c.Param("id"))
 		c.JSON(200, res)
 	} else {
-		c.JSON(200, ErrorResponse(err))
+		c.JSON(444, ErrorResponse(err))
 	}
 }
